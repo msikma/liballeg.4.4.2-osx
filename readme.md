@@ -65,7 +65,7 @@ I'm not sure if the instructions work for El Capitan 10.11, but I know they don'
     make: *** [all] Error 2
 
 * Compiler: `Apple LLVM version 8.0.0 (clang-800.0.38)`
-* Linker: `@(#)PROGRAM:ld  PROJECT:ld64-274.1`.
+* Linker: `@(#)PROGRAM:ld  PROJECT:ld64-274.1`
 
 This may be related to [this question on Stack Overflow](http://stackoverflow.com/questions/39381754/malformed-mach-o-image-symbol-table-underruns-linkedit) but I'm not sure. I haven't spent any time getting it to work.
 
