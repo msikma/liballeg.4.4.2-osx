@@ -36,16 +36,16 @@ Then, just type `make`. This should successfully build the framework and the ass
 
 Unfortunately, there's a problem that I haven't been able to resolve yet: building in this way causes binaries (such as the very useful `dat` utility) to look for the `liballeg` dylib in the absolute path where it ended up after the build process finished.
 
-One way to resolve this is by manually editing a binary to look for the library elsewhere. In this example I'll make the `dat` utility look for `liballeg.4.4.dylib` in the `../lib/` directory, rather than the full path of my build.
+To fix this, I've added a script `fixrpath.bash` that relinks the dylib to a relative path (specifically, `../lib`). This has already been done in this build, but it's useful in case you want to make your own build. Of course, it would be much nicer to not have to deal with this problem at all, by fixing it in the Allegro CMake file, but I don't know how to do that.
 
-    # set relative path to the . directory
+To explain how the `fixrpath.bash` script works, it's basically modifying the binary to look for the library elsewhere. In this example I'll make the `dat` utility look for `liballeg.4.4.dylib` in the `../lib/` directory, rather than the full path of my build.
+
+    # set relative path to the ../lib directory
     install_name_tool -add_rpath @loader_path/../lib/ dat
-    # change dylib load from full path to a relative path
+    # change dylib load from an absolute path to a relative path
     install_name_tool -change /Users/msikma/test/allegro/build/lib/liballeg.4.4.dylib @rpath/liballeg.4.4.dylib dat
 
-Now it should work as long as the `liballeg.4.4.dylib` file is in the same directory. To find the exact path string to replace, use `otool -lv dat`.
-
-To facilitate this, I've included a script `fixrpath.bash` that does it for you as long as you know what the absolute dylib path is.
+Note that the absolute path I give is unique to my compilation setup, and will be different for you. To find the exact path string to replace, use `otool -lv dat`. After this, the `dat` utility should work as long as the `liballeg.4.4.dylib` file is in the `../lib` directory.
 
 ### OSX El Capitan (10.11) and up
 
