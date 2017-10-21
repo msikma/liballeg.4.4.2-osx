@@ -1,6 +1,6 @@
 # Allegro 4.4.2 build for OSX
 
-This is a build of Allegro 4.4.2 for Mac OS X. It's quite difficult to build this version of the library on modern systems due to the outdated dependencies it has. These instructions require the use of the OSX 10.4 SDK.
+This is a build of Allegro 4.4.2 for Mac OS X (i386 arch). It's quite difficult to build this version of the library on modern systems due to the outdated dependencies it has. These instructions require the use of the OSX 10.4 SDK.
 
 All examples that actually draw a window (such as the `grabber` or `miditest`, etc) will not work properly on retina displays. If you know how to fix this, please feel free to let me know. Presumably, this can be fixed by bundling them as `.app` directories, which allows Mac OS X to run them with double pixels.
 
